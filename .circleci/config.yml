@@ -8,9 +8,12 @@ workflows:
           matrix:
             parameters:
               java-version: [java-8, java-11, java-14, java-15, java-16]
+      - sonarcloud:
+          context: SonarCloud
+          requires:
+            - build
 
   nightly:
-    context: SonarCloud
     triggers:
       - schedule:
           cron: "25 5 * * *"
@@ -19,12 +22,12 @@ workflows:
               only:
                 - master
     jobs:
-      context: SonarCloud
       - build:
           matrix:
             parameters:
               java-version: [java-8, java-11, java-14, java-15, java-16]
       - sonarcloud:
+          context: SonarCloud
           requires:
             - build
 
