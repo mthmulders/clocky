@@ -75,7 +75,7 @@ jobs:
             java -version
       - run:
           name: Download dependencies and plugins
-          command: mvn dependency:go-offline -P coverage
+          command: mvn dependency:go-offline -P sonarcloud
       - save_cache:
           paths:
             - ~/.m2
