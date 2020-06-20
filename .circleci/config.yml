@@ -59,7 +59,7 @@ jobs:
       - run:
           name: Analyse code with SonarCloud
           command: |
-            mvn -P sonarcloud -Dsonar.login=$SONAR_TOKEN
+            mvn -P sonarcloud -Dsonar.login=$SONAR_TOKEN sonar:sonar
   build:
     parameters:
       java-version:
