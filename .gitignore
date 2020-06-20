@@ -1,0 +1,6 @@
+# Directories
+target/
+.idea/
+
+# Files
+*.iml
