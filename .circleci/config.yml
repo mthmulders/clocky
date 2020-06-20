@@ -80,3 +80,16 @@ jobs:
           paths:
             - ~/.m2
           key: clocky-v1-{{ .Branch }}-{{ checksum "pom.xml" }}
+      - run:
+          name: Build and test code
+          command: |
+            mvn verify
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/junit/ \;
+            find . -type f -regex ".*/target/failsafe-reports/.*xml" -exec cp {} ~/junit/ \;
+          when: always
+      - store_test_results:
+          path: ~/junit
