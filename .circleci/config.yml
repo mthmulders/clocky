@@ -10,6 +10,7 @@ workflows:
               java-version: [java-8, java-11, java-14, java-15, java-16]
 
   nightly:
+    context: SonarCloud
     triggers:
       - schedule:
           cron: "25 5 * * *"
@@ -18,10 +19,14 @@ workflows:
               only:
                 - master
     jobs:
+      context: SonarCloud
       - build:
           matrix:
             parameters:
               java-version: [java-8, java-11, java-14, java-15, java-16]
+      - sonarcloud:
+          requires:
+            - build
 
 executors:
   java-8:
@@ -41,6 +46,16 @@ executors:
         - image: circleci/openjdk:16-buster
 
 jobs:
+  sonarcloud:
+    docker:
+      - image: circleci/openjdk:11
+    steps:
+      - checkout
+      - restore_cache:
+          key: clocky-v1-{{ .Branch }}-{{ checksum "pom.xml" }}
+      - run:
+          name: Analyse code with SonarCloud
+          run: mvn -P sonarcloud -Dsonar.login=$SONAR_TOKEN
   build:
     parameters:
       java-version:
@@ -48,7 +63,16 @@ jobs:
     executor: << parameters.java-version >>
     steps:
       - checkout
+      - restore_cache:
+          key: clocky-v1-{{ .Branch }}-{{ checksum "pom.xml" }}
       - run:
           name: Print Java version
           command: |
             java -version
+      - run:
+          name: Download dependencies and plugins
+          command: mvn dependency:go-offline -P coverage
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: clocky-v1-{{ .Branch }}-{{ checksum "pom.xml" }}
