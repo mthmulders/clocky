@@ -1,0 +1,54 @@
+version: 2.1
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              java-version: [java-8, java-11, java-14, java-15, java-16]
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "25 5 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              java-version: [java-8, java-11, java-14, java-15, java-16]
+
+executors:
+  java-8:
+    docker:
+      - image: circleci/openjdk:8
+  java-11:
+    docker:
+      - image: circleci/openjdk:11
+  java-14:
+    docker:
+      - image: circleci/openjdk:14-buster
+  java-15:
+    docker:
+        - image: circleci/openjdk:15-buster
+  java-16:
+    docker:
+        - image: circleci/openjdk:16-buster
+
+jobs:
+  build:
+    parameters:
+      java-version:
+        type: executor
+    executor: << parameters.java-version >>
+    steps:
+      - checkout
+      - run:
+          name: Print Java version
+          command: |
+            java -version
