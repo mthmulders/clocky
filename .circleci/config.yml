@@ -58,7 +58,8 @@ jobs:
           key: clocky-v1-{{ .Branch }}-{{ checksum "pom.xml" }}
       - run:
           name: Analyse code with SonarCloud
-          run: mvn -P sonarcloud -Dsonar.login=$SONAR_TOKEN
+          command: |
+            mvn -P sonarcloud -Dsonar.login=$SONAR_TOKEN
   build:
     parameters:
       java-version:
