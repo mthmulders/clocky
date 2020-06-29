@@ -14,7 +14,7 @@ PROJECT=${GITHUB_REPOSITORY}
 VERSION=${GITHUB_REF#refs/heads/}
 
 echo Uploading mutation-testing-report.json to ${BASE_URL}/api/reports/${PROJECT}/${VERSION}
-curl -X PUT \
+curl -v -X PUT \
   ${BASE_URL}/api/reports/${PROJECT}/${VERSION} \
   -H "Content-Type: application/json" \
   -H "Host: dashboard.stryker-mutator.io" \
