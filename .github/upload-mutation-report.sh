@@ -10,7 +10,7 @@ report=${reportJsContent:60}
 echo ${report} > mutation-testing-report.json
 
 BASE_URL="https://dashboard.stryker-mutator.io"
-PROJECT=${GITHUB_REPOSITORY}
+PROJECT="github.com/${GITHUB_REPOSITORY}"
 VERSION=${GITHUB_REF#refs/heads/}
 
 echo Uploading mutation-testing-report.json to ${BASE_URL}/api/reports/${PROJECT}/${VERSION}
