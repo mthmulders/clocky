@@ -59,7 +59,7 @@ jobs:
           java-version: 11
 
       - name: Run Pitest
-        run: mvn org.pitest:pitest-maven:mutationCoverage
+        run: mvn test-compile org.pitest:pitest-maven:mutationCoverage
 
       - name: Upload mutation test report
         run: ./.github/upload-mutation-report.sh
