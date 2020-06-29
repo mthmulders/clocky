@@ -174,7 +174,6 @@
                         </dependency>
                     </dependencies>
                     <configuration>
-                        <failWhenNoMutations>false</failWhenNoMutations>
                         <outputFormats>
                             <format>HTML2</format>
                         </outputFormats>
