@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
-        java: [8, 11, 14, 15]
+        java: [8, 11, 14, 15-ea]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -26,6 +26,15 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
 
+      - name: Set up cache for ~./m2/repository
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: clocky-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            clocky-${{ matrix.os }}-clocky-{{ matrix.java }}
+            clocky-${{ matrix.os }}
+
       - name: Build and test code
         run: mvn verify
 
@@ -38,6 +47,12 @@ jobs:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
 
+      - name: Set up cache for ~./m2/repository
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: clocky-ubuntu-latest-java11-${{ hashFiles('**/pom.xml') }}
+
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
@@ -45,3 +60,5 @@ jobs:
 
       - name: SonarCloud Scan
         run: mvn -P sonarcloud -Dsonar.login=$SONAR_TOKEN sonar:sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
