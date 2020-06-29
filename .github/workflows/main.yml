@@ -51,9 +51,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.m2/repository
-          key: clocky-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            clocky-${{ matrix.os }}-clocky{{ matrix.java }}-clocky-${{ matrix.os }}
+          key: clocky-ubuntu-latest-java11-${{ hashFiles('**/pom.xml') }}
 
       - name: Set up JDK
         uses: actions/setup-java@v1
