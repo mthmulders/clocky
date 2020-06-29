@@ -26,6 +26,15 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
 
+      - name: Set up cache for ~./m2/repository
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: clocky-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            clocky-${{ matrix.os }}-clocky-{{ matrix.java }}
+            clocky-${{ matrix.os }}
+
       - name: Build and test code
         run: mvn verify
 
@@ -37,6 +46,14 @@ jobs:
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
+
+      - name: Set up cache for ~./m2/repository
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: clocky-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            clocky-${{ matrix.os }}-clocky{{ matrix.java }}-clocky-${{ matrix.os }}
 
       - name: Set up JDK
         uses: actions/setup-java@v1
