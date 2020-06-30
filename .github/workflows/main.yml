@@ -36,7 +36,7 @@ jobs:
             clocky-${{ matrix.os }}
 
       - name: Build and test code
-        run: mvn verify
+        run: mvn verify -P sonarcloud
 
   mutationtesting:
     runs-on: ubuntu-latest
