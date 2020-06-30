@@ -36,7 +36,7 @@ jobs:
             clocky-${{ matrix.os }}
 
       - name: Build and test code
-        run: mvn verify sonar:sonar -P sonarcloud
+        run: mvn verify
 
   mutationtesting:
     runs-on: ubuntu-latest
@@ -87,7 +87,7 @@ jobs:
           java-version: 11
 
       - name: SonarCloud Scan
-        run: mvn -P sonarcloud -Dsonar.login=$SONAR_TOKEN sonar:sonar
+        run: mvn -P sonarcloud -Dsonar.login=$SONAR_TOKEN verify sonar:sonar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
