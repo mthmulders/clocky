@@ -112,7 +112,7 @@ class ManualClockTest implements WithAssertions {
     }
 
     @Test
-    public void equals_contract() {
+    void equals_contract() {
         EqualsVerifier.forClass(ManualClock.class)
                 .withNonnullFields("supplier", "zoneId")
                 .withRedefinedSuperclass()
