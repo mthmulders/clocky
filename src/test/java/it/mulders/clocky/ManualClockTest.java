@@ -15,6 +15,7 @@
  */
 package it.mulders.clocky;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
 
@@ -108,5 +109,13 @@ class ManualClockTest implements WithAssertions {
         assertThat(clock.millis()).isEqualTo(updatedValue);
         sleep(Duration.ofMillis(10));
         assertThat(clock.millis()).isEqualTo(updatedValue);
+    }
+
+    @Test
+    public void equals_contract() {
+        EqualsVerifier.forClass(ManualClock.class)
+                .withNonnullFields("supplier", "zoneId")
+                .withRedefinedSuperclass()
+                .verify();
     }
 }

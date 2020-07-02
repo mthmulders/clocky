@@ -73,15 +73,17 @@ public final class ManualClock extends Clock {
         return supplier.get();
     }
 
-    /** {@inheritDoc} */
     @Override
-    public boolean equals(final Object other) {
-        return super.equals(other);
+    public final boolean equals(final Object other) {
+        if (other instanceof ManualClock) {
+            final ManualClock that = (ManualClock) other;
+            return this.supplier.equals(that.supplier) && this.zoneId.equals(that.zoneId);
+        }
+        return false;
     }
 
-    /** {@inheritDoc} */
     @Override
-    public  int hashCode() {
-        return super.hashCode();
+    public final int hashCode() {
+        return this.supplier.hashCode() ^ this.zoneId.hashCode();
     }
 }
