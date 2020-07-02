@@ -66,6 +66,12 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -179,6 +185,72 @@
                         </outputFormats>
                         <timestampedReports>false</timestampedReports>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.4.1</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>extra-enforcer-rules</artifactId>
+                            <version>1.3</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.sonatype.ossindex.maven</groupId>
+                            <artifactId>ossindex-maven-enforcer-rules</artifactId>
+                            <version>3.1.0</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                            <id>enforce-rules</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <fail>true</fail>
+                                <rules>
+                                    <!-- checks the dependencies and fails if the groupId:artifactId combination exists
+                                         in the list of direct or transitive dependencies -->
+                                    <banCircularDependencies />
+
+                                    <!-- checks the dependencies and fails if any class is present in more than one
+                                         dependency -->
+                                    <banDuplicateClasses>
+                                        <scopes>
+                                            <scope>runtime</scope>
+                                        </scopes>
+                                    </banDuplicateClasses>
+
+                                    <!-- checks the dependencies and fails if any dependencies with known vulnerabilities
+                                         are in use. -->
+                                    <banVulnerable implementation="org.sonatype.ossindex.maven.enforcer.BanVulnerableDependencies">
+                                        <scope>runtime</scope>
+                                    </banVulnerable>
+
+                                    <!-- ensure all dependencies converge to the same version -->
+                                    <dependencyConvergence />
+
+                                    <!-- checks the dependencies transitively and fails if any class of any dependency
+                                         is having its bytecode version higher than the one specified -->
+                                    <enforceBytecodeVersion>
+                                        <maxJdkVersion>${maven.compiler.source}</maxJdkVersion>
+                                    </enforceBytecodeVersion>
+
+                                    <!-- enforces the JDK version -->
+                                    <requireJavaVersion>
+                                        <version>${maven.compiler.source}</version>
+                                    </requireJavaVersion>
+
+                                    <!-- enforces the Maven version -->
+                                    <requireMavenVersion>
+                                        <version>3.5.0</version>
+                                    </requireMavenVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
