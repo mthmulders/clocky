@@ -75,4 +75,10 @@ public final class ManualClock extends Clock {
     public boolean equals(final Object other) {
         return super.equals(other);
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public  int hashCode() {
+        return super.hashCode();
+    }
 }
