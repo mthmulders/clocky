@@ -30,6 +30,9 @@ class ManualClockTest implements WithAssertions {
 
     private static final Supplier<Instant> EPOCH_SUPPLIER = () -> Instant.EPOCH;
 
+    @SuppressWarnings({
+            "java:S2925" // "Thread.sleep" should not be used in tests
+    })
     private void sleep(Duration duration) throws InterruptedException {
         Thread.sleep(duration.toMillis());
     }
