@@ -5,6 +5,7 @@
 [![SonarCloud technical debt](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_clocky&metric=sqale_index)](https://sonarcloud.io/dashboard?id=mthmulders_clocky)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=mthmulders/clocky)](https://dependabot.com)
 [![Mutation testing badge](https://img.shields.io/endpoint?style=plastic&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fmthmulders%2Fclocky%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/mthmulders/clocky/master)
+[![Maven Central](https://img.shields.io/maven-central/v/it.mulders.clocky/clocky.svg?color=brightgreen&label=Maven%20Central)](https://search.maven.org/artifact/it.mulders.clocky/clocky)
 
 ## 🚀 TL;DR
 Clocky is a test stub for the [`java.time.Clock` class](https://docs.oracle.com/javase/8/docs/api/index.html?java/time/Clock.html) introduced with JSR-310 in Java 8.
