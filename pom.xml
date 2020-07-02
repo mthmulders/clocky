@@ -8,6 +8,7 @@
 
     <name>Clocky</name>
     <url>https://github.com/mthmulders/clocky</url>
+    <description>Time-related test utilities for Java</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,6 +25,15 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
+
+    <developers>
+        <developer>
+            <id>mthmulders</id>
+            <name>Maarten Mulders</name>
+            <timezone>Europe/Amsterdam</timezone>
+            <url>https://maarten.mulders.it/</url>
+        </developer>
+    </developers>
 
     <scm>
         <url>https://github.com/mthmulders/clocky</url>
