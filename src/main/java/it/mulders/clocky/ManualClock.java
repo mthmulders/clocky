@@ -23,7 +23,8 @@ import java.util.function.Supplier;
 
 /**
  * A clock that can by itself will not progress other than when it is explicitly told to do so.
- * This is a mixture between the {@link Clock.FixedClock} and the regular {@link Clock.SystemClock} implementations.
+ * This is a mixture between the {@link Clock#fixed(Instant, ZoneId)} and the {@link Clock#systemDefaultZone()}
+ * implementations.
  */
 public final class ManualClock extends Clock {
     private final Supplier<Instant> supplier;
