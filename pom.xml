@@ -34,6 +34,11 @@
         <developerConnection>scm:git:git@github.com:mthmulders/clocky.git</developerConnection>
     </scm>
 
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/mthmulders/clocky/issues</url>
+    </issueManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
