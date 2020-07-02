@@ -10,7 +10,7 @@
 Clocky is a test stub for the [`java.time.Clock` class](https://docs.oracle.com/javase/8/docs/api/index.html?java/time/Clock.html) introduced with JSR-310 in Java 8.
 It lets you control how time flies in your tests.
 
-## 📃 The longer story
+## 📖 The longer story
 Starting with Java 8, Java has a new class: [`java.time.Clock`](https://docs.oracle.com/javase/8/docs/api/index.html?java/time/Clock.html).
 This class provides access to the current instant, date and time using a time-zone.
 
@@ -86,3 +86,12 @@ instant.set(Instant.ofEpochMilli(base + 10));
 
 // verify system under test to see the duration is indeed 10 millis
 ```
+
+## ⚖️ License
+Clocky is licensed under the Apache License, version 2.
+See [**LICENSE**](./LICENSE) for the full text of the license.
+
+## 🛠️ Contributing
+Do you have an idea for Clocky, or want to report a bug?
+All contributions are welcome!
+Feel free to [file an issue](https://github.com/mthmulders/clocky/issues/new) with your idea, question or whatever it is you want to contribute.
