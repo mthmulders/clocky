@@ -8,6 +8,7 @@
 
     <name>Clocky</name>
     <url>https://github.com/mthmulders/clocky</url>
+    <description>Time-related test utilities for Java</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
