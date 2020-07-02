@@ -69,4 +69,10 @@ public final class ManualClock extends Clock {
     public Instant instant() {
         return supplier.get();
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean equals(final Object other) {
+        return super.equals(other);
+    }
 }
