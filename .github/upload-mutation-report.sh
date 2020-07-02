@@ -5,9 +5,9 @@ trap "rm mutation-testing-report.json" ERR
 
 reportJsLocation=$(find . -name "report.js")
 echo Found report.js at ${reportJsLocation}
-reportJsContent=$(cat ${reportJsLocation})
-report=${reportJsContent:60}
-echo ${report} > mutation-testing-report.json
+reportJsContent=$(<${reportJsLocation})
+report="${reportJsContent:60}"
+echo "${report}" > mutation-testing-report.json
 
 BASE_URL="https://dashboard.stryker-mutator.io"
 PROJECT="github.com/${GITHUB_REPOSITORY}"
