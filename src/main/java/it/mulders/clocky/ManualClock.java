@@ -44,6 +44,9 @@ public final class ManualClock extends Clock {
      * @param zoneId the time-zone to use to convert the instant to date-time.
      */
     public ManualClock(final Supplier<Instant> instantSupplier, final ZoneId zoneId) {
+        Objects.requireNonNull(instantSupplier, "Instant supplier may not be null");
+        Objects.requireNonNull(zoneId, "Zone ID may not be null");
+
         this.supplier = instantSupplier;
         this.zoneId = zoneId;
     }
