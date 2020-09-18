@@ -197,7 +197,7 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.5</version>
+                    <version>0.8.6</version>
                 </plugin>
                 <plugin>
                     <groupId>org.pitest</groupId>
@@ -311,6 +311,15 @@
     <profiles>
         <profile>
             <id>coverage</id>
+        </profile>
+        <profile>
+            <id>java-16</id>
+            <activation>
+                <jdk>16</jdk>
+            </activation>
+            <properties>
+                <argLine>-Dnet.bytebuddy.experimental=true</argLine>
+            </properties>
         </profile>
         <profile>
             <id>release</id>
