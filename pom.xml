@@ -302,6 +302,15 @@
             <id>coverage</id>
         </profile>
         <profile>
+            <id>java-16</id>
+            <activation>
+                <jdk>16</jdk>
+            </activation>
+            <properties>
+                <argLine>-Dnet.bytebuddy.experimental=true</argLine>
+            </properties>
+        </profile>
+        <profile>
             <id>release</id>
             <build>
                 <plugins>
