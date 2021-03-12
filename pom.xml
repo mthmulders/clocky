@@ -202,7 +202,7 @@
                 <plugin>
                     <groupId>org.pitest</groupId>
                     <artifactId>pitest-maven</artifactId>
-                    <version>1.6.3</version>
+                    <version>1.6.4</version>
                     <dependencies>
                         <dependency>
                             <groupId>org.pitest</groupId>
