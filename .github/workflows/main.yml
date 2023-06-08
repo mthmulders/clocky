@@ -60,11 +60,8 @@ jobs:
 
       - name: Run Pitest
         run: mvn test-compile org.pitest:pitest-maven:mutationCoverage
-
-      - name: Upload mutation test report
-        run: ./.github/upload-mutation-report.sh
         env:
-          API_KEY: ${{ secrets.STRYKER_DASHBOARD_TOKEN }}
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_TOKEN }}
 
   sonarcloud:
     runs-on: ubuntu-latest
