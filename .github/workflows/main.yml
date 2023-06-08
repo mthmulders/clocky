@@ -61,7 +61,7 @@ jobs:
       - name: Run Pitest
         run: mvn test-compile org.pitest:pitest-maven:mutationCoverage
         env:
-          API_KEY: ${{ secrets.STRYKER_DASHBOARD_TOKEN }}
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_TOKEN }}
 
   sonarcloud:
     runs-on: ubuntu-latest
