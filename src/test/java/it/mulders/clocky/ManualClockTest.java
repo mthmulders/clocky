@@ -39,8 +39,24 @@ class ManualClockTest implements WithAssertions {
     }
 
     @Test
+    void instant_should_return_advanceablevalue_at_construction_time() {
+        final AdvanceableTime advanceableTime = new AdvanceableTime(Instant.EPOCH);
+        final Clock clock = new ManualClock(advanceableTime);
+
+        assertThat(clock.instant()).isEqualTo(Instant.EPOCH);
+    }
+
+    @Test
     void millis_should_return_value_at_construction_time() {
         final Clock clock = new ManualClock(EPOCH_SUPPLIER);
+
+        assertThat(clock.millis()).isEqualTo(Instant.EPOCH.toEpochMilli());
+    }
+
+    @Test
+    void millis_should_return_advanceablevalue_at_construction_time() {
+        final AdvanceableTime advanceableTime = new AdvanceableTime(Instant.EPOCH);
+        final Clock clock = new ManualClock(advanceableTime);
 
         assertThat(clock.millis()).isEqualTo(Instant.EPOCH.toEpochMilli());
     }
@@ -53,9 +69,26 @@ class ManualClockTest implements WithAssertions {
     }
 
     @Test
+    void advanceabletime_constructor_should_use_system_default_zone() {
+        final AdvanceableTime advanceableTime = new AdvanceableTime(Instant.EPOCH);
+        final Clock clock = new ManualClock(advanceableTime);
+
+        assertThat(clock.getZone()).isEqualTo(ZoneOffset.systemDefault());
+    }
+
+    @Test
     void constructor_should_override_zone() {
         final ZoneOffset offset = ZoneOffset.ofHoursMinutes(4, 30);
         final Clock clock = new ManualClock(EPOCH_SUPPLIER, offset);
+
+        assertThat(clock.getZone()).isEqualTo(offset);
+    }
+
+    @Test
+    void advanceabletime_constructor_should_override_zone() {
+        final AdvanceableTime advanceableTime = new AdvanceableTime(Instant.EPOCH);
+        final ZoneOffset offset = ZoneOffset.ofHoursMinutes(4, 30);
+        final Clock clock = new ManualClock(advanceableTime, offset);
 
         assertThat(clock.getZone()).isEqualTo(offset);
     }
@@ -98,6 +131,19 @@ class ManualClockTest implements WithAssertions {
         assertThat(clock.millis()).isEqualTo(updatedValue);
         TestUtils.sleep(Duration.ofMillis(10));
         assertThat(clock.millis()).isEqualTo(updatedValue);
+    }
+
+
+    @Test
+    void allows_advanceabletime_progression() throws InterruptedException {
+        final AdvanceableTime advanceableTime = new AdvanceableTime(Instant.EPOCH);
+        final Clock clock = new ManualClock(advanceableTime, ZoneOffset.UTC);
+
+        assertThat(clock.millis()).isEqualTo(0L);
+
+        advanceableTime.advanceBy(Duration.ofSeconds(10));
+
+        assertThat(clock.millis()).isEqualTo(10_000L);
     }
 
     @Test

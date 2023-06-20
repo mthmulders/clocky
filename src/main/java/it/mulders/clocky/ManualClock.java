@@ -32,6 +32,24 @@ public final class ManualClock extends Clock {
     /**
      * Creates an instance that always returns the instant returned by a factory method. The clock runs in the system's
      * default time zone.
+     * @param advanceableTime the time to return.
+     */
+    public ManualClock(final AdvanceableTime advanceableTime) {
+        this(advanceableTime, ZoneId.systemDefault());
+    }
+
+    /**
+     * Creates an instance that always returns the instant returned by a factory method.
+     * @param advanceableTime the time to return.
+     * @param zoneId the time zone to use to convert the instant to date-time.
+     */
+    public ManualClock(final AdvanceableTime advanceableTime, final ZoneId zoneId) {
+        this(advanceableTime::instant, zoneId);
+    }
+
+    /**
+     * Creates an instance that always returns the instant returned by a factory method. The clock runs in the system's
+     * default time zone.
      * @param instantSupplier the function to be invoked when asked for the current time.
      */
     public ManualClock(final Supplier<Instant> instantSupplier) {
