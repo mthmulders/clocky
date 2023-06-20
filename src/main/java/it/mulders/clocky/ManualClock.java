@@ -22,17 +22,16 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
- * A clock that can by itself will not progress other than when it is explicitly told to do so.
- * This is a mixture between the {@link Clock#fixed(Instant, ZoneId)} and the {@link Clock#systemDefaultZone()}
- * implementations.
+ * A clock that by itself will not progress other than when it is explicitly told to do so.
+ * This clock will determine the current time by calling the function that is provided at construction.
  */
 public final class ManualClock extends Clock {
     private final Supplier<Instant> supplier;
     private final ZoneId zoneId;
 
     /**
-     * Creates an instance that always returns the instant returned by a factory method. The clock runs in the systems
-     * default time-zone.
+     * Creates an instance that always returns the instant returned by a factory method. The clock runs in the system's
+     * default time zone.
      * @param instantSupplier the function to be invoked when asked for the current time.
      */
     public ManualClock(final Supplier<Instant> instantSupplier) {
@@ -42,7 +41,7 @@ public final class ManualClock extends Clock {
     /**
      * Creates an instance that always returns the instant returned by a factory method.
      * @param instantSupplier the function to be invoked when asked for the current time.
-     * @param zoneId the time-zone to use to convert the instant to date-time.
+     * @param zoneId the time zone to use to convert the instant to date-time.
      */
     public ManualClock(final Supplier<Instant> instantSupplier, final ZoneId zoneId) {
         Objects.requireNonNull(instantSupplier, "Instant supplier may not be null");
