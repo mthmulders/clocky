@@ -31,20 +31,9 @@ class ManualClockTest implements WithAssertions {
 
     private static final Supplier<Instant> EPOCH_SUPPLIER = () -> Instant.EPOCH;
 
-    @SuppressWarnings({
-            "java:S2925" // "Thread.sleep" should not be used in tests
-    })
-    private void sleep(Duration duration) throws InterruptedException {
-        Thread.sleep(duration.toMillis());
-    }
-
     @Test
-    void instant_should_return_value_at_construction_time() throws InterruptedException {
+    void instant_should_return_value_at_construction_time() {
         final Clock clock = new ManualClock(EPOCH_SUPPLIER);
-
-        assertThat(clock.instant()).isEqualTo(Instant.EPOCH);
-
-        sleep(Duration.ofMillis(10));
 
         assertThat(clock.instant()).isEqualTo(Instant.EPOCH);
     }
@@ -101,13 +90,13 @@ class ManualClockTest implements WithAssertions {
         final Clock clock = new ManualClock(() -> Instant.ofEpochMilli(instant.get()));
 
         assertThat(clock.millis()).isEqualTo(initialValue);
-        sleep(Duration.ofMillis(10));
+        TestUtils.sleep(Duration.ofMillis(10));
         assertThat(clock.millis()).isEqualTo(initialValue);
 
         instant.set(updatedValue);
 
         assertThat(clock.millis()).isEqualTo(updatedValue);
-        sleep(Duration.ofMillis(10));
+        TestUtils.sleep(Duration.ofMillis(10));
         assertThat(clock.millis()).isEqualTo(updatedValue);
     }
 
