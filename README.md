@@ -88,6 +88,22 @@ instant.set(Instant.ofEpochMilli(base + 10));
 // verify system under test to see the duration is indeed 10 millis
 ```
 
+Additionally, Clocky provides the `AdvanceableTime` utility for incrementally controlling time in your tests.
+This also guarantees that time is always incremental, since not just any `Instant` can be provided.
+
+```java
+final AdvanceableTime time = new AdvanceableTime(Instant.EPOCH); // can start at any Instant
+final Clock clock = new ManualClock(time);
+
+// create system under test, passing clock along.
+
+// invoke system under test
+time.advanceBy(Duration.ofMillis(10));
+// invoke system under test
+
+// verify system under test to see the duration is indeed 10 millis
+```
+
 ## ⚖️ License
 Clocky is licensed under the Apache License, version 2.
 See [**LICENSE**](./LICENSE) for the full text of the license.
