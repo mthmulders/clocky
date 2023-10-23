@@ -223,7 +223,7 @@
                         <dependency>
                             <groupId>io.github.wmaarts</groupId>
                             <artifactId>pitest-mutation-testing-elements-plugin</artifactId>
-                            <version>0.5.0</version>
+                            <version>0.6.0</version>
                         </dependency>
                     </dependencies>
                     <configuration>
