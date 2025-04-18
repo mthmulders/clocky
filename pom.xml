@@ -4,7 +4,7 @@
 
     <groupId>it.mulders.clocky</groupId>
     <artifactId>clocky</artifactId>
-    <version>0.4.3-SNAPSHOT</version>
+    <version>0.5-SNAPSHOT</version>
 
     <name>Clocky</name>
     <url>https://github.com/mthmulders/clocky</url>
