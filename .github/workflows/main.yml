@@ -25,6 +25,7 @@ jobs:
         uses: actions/setup-java@v4.7.1
         with:
           java-version: ${{ matrix.java }}
+          distribution: 'adopt'
 
       - name: Set up cache for ~./m2/repository
         uses: actions/cache@v4.2.3
@@ -57,6 +58,7 @@ jobs:
         uses: actions/setup-java@v4.7.1
         with:
           java-version: 11
+          distribution: 'adopt'
 
       - name: Run Pitest
         run: mvn test-compile org.pitest:pitest-maven:mutationCoverage
@@ -82,6 +84,7 @@ jobs:
         uses: actions/setup-java@v4.7.1
         with:
           java-version: 17
+          distribution: 'adopt'
 
       - name: SonarCloud Scan
         run: mvn -P sonarcloud -Dsonar.login=$SONAR_TOKEN verify sonar:sonar
