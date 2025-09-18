@@ -4,7 +4,7 @@
 
     <groupId>it.mulders.clocky</groupId>
     <artifactId>clocky</artifactId>
-    <version>0.4.7-SNAPSHOT</version>
+    <version>0.4.7</version>
 
     <name>Clocky</name>
     <url>https://github.com/mthmulders/clocky</url>
@@ -39,7 +39,7 @@
         <url>https://github.com/mthmulders/clocky</url>
         <connection>scm:git:https://github.com/mthmulders/clocky.git</connection>
         <developerConnection>scm:git:git@github.com:mthmulders/clocky.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>v0.4.7</tag>
   </scm>
 
     <issueManagement>
