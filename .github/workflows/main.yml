@@ -28,7 +28,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Set up cache for ~./m2/repository
-        uses: actions/cache@v4.2.4
+        uses: actions/cache@v4.3.0
         with:
           path: ~/.m2/repository
           key: clocky-${{ matrix.os }}-java${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
@@ -49,7 +49,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up cache for ~./m2/repository
-        uses: actions/cache@v4.2.4
+        uses: actions/cache@v4.3.0
         with:
           path: ~/.m2/repository
           key: clocky-ubuntu-latest-java11-${{ hashFiles('**/pom.xml') }}
@@ -75,7 +75,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up cache for ~./m2/repository
-        uses: actions/cache@v4.2.4
+        uses: actions/cache@v4.3.0
         with:
           path: ~/.m2/repository
           key: clocky-ubuntu-latest-java11-${{ hashFiles('**/pom.xml') }}
