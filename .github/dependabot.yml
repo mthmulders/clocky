@@ -10,6 +10,10 @@ updates:
     # EqualsVerifier 4.0 requires Java 17. Don't want to enforce that upon Clocky users (yet).
     - dependency-name: "nl.jqno.equalsverifier:equalsverifier"
       versions: ["[4,)"]
+    # JUnit 6 requires Java 17
+    - dependency-name: "org.junit:junit-bom"
+      versions: [ "6.0.0,)" ]
+
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
