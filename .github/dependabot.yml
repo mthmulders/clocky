@@ -13,7 +13,6 @@ updates:
     # JUnit 6 requires Java 17
     - dependency-name: "org.junit:junit-bom"
       versions: [ "6.0.0,)" ]
-
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
