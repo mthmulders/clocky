@@ -204,7 +204,7 @@
                         <dependency>
                             <groupId>it.mulders.stryker</groupId>
                             <artifactId>pit-dashboard-reporter</artifactId>
-                            <version>0.3.10</version>
+                            <version>0.3.11</version>
                         </dependency>
                         <dependency>
                             <groupId>org.pitest</groupId>
