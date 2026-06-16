@@ -4,7 +4,7 @@
 
     <groupId>it.mulders.clocky</groupId>
     <artifactId>clocky</artifactId>
-    <version>0.4.16-SNAPSHOT</version>
+    <version>0.4.16</version>
 
     <name>Clocky</name>
     <url>https://github.com/mthmulders/clocky</url>
@@ -12,7 +12,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.outputTimestamp>2026-06-16T09:44:57Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2026-06-16T10:06:18Z</project.build.outputTimestamp>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
@@ -40,7 +40,7 @@
         <url>https://github.com/mthmulders/clocky</url>
         <connection>scm:git:https://github.com/mthmulders/clocky.git</connection>
         <developerConnection>scm:git:git@github.com:mthmulders/clocky.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>v0.4.16</tag>
   </scm>
 
     <issueManagement>
