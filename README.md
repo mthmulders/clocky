@@ -8,7 +8,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/it.mulders.clocky/clocky.svg?color=brightgreen&label=Maven%20Central)](https://search.maven.org/artifact/it.mulders.clocky/clocky)
 
 ## 🚀 TL;DR
-Clocky is a test stub for the [`java.time.Clock` class](https://docs.oracle.com/javase/8/docs/api/index.html?java/time/Clock.html) introduced with JSR-310 in Java 8.
+Clocky is a zero-dependency (see below) test stub for the [`java.time.Clock` class](https://docs.oracle.com/javase/8/docs/api/index.html?java/time/Clock.html) introduced with JSR-310 in Java 8.
 It lets you control how time flies in your tests.
 
 ## 📖 The longer story
@@ -103,6 +103,23 @@ time.advanceBy(Duration.ofMillis(10));
 
 // verify system under test to see the duration is indeed 10 millis
 ```
+
+## ⚖️ Zero-dependency?!
+
+Clocky is designed to be light-weight, and does not rely on any dependency.
+This keeps your dependency tree clean, too.
+
+Of course, Clocky itself is well-tested.
+It trusts on [JUnit Jupiter](https://junit.org/), and [Assert-J](https://assertj.github.io/doc/) and [EqualsVerifier](https://jqno.nl/equalsverifier/) to achieve that.
+Those test dependency will not creep into your project, and you are free to use a different test-setup if you prefer.
+
+Clocky also aims to support older Java runtimes, back to Java 11.
+This means it can't use the latest versions of JUnit Jupiter or EqualsVerifier.
+Having older test dependencies is an accepted consequence of the choice to support older versions of Java.
+Because those dependencies do not leak into your project, it should not matter if you're only using Clocky for your own tests.
+
+As a result, do not expect many updates on Clocky.
+Its build requirements (GitHub actions and Apache Maven plugins) may incidentally get updated but that doesn't matter for end users.
 
 ## ⚖️ License
 Clocky is licensed under the Apache License, version 2.
